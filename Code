@@ -1,0 +1,72 @@
+import java.util.*;
+public class IcecrmPrlr {
+
+	/**
+	 * @param args
+	 */
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+     Scanner sc=new Scanner(System.in);
+     int t=sc.nextInt();
+     int M;
+     int N;
+     for(int i=0;i<t;i++)
+     {
+    	 M=sc.nextInt();
+    	 N=sc.nextInt();
+    	 int[] A =new int[N];
+    	 int[] B =new int[N];
+    	 
+    	 for(int j=0;j<N;j++){
+    		 A[j]=sc.nextInt();
+    		 B[j]=A[j];
+     }
+      Arrays.sort(B);
+      int index1;
+      int realIndex;
+      if(N%2==0){
+    	  index1=N/2;
+       realIndex=N;
+      }else{
+    	  index1=(N-1)/2;
+      realIndex=N;}
+      while(B[realIndex]<M)  //check here, boundary condition
+      {
+    	  if(index1%2==0){
+    		  index1=index1/2;
+    	  realIndex=index1*2;
+    	  }
+    	  else{
+    		  index1=(index1-1)/2;
+      realIndex=(index1*2)+1;
+    	  }}
+      //arrays to be searched bwtween 0 to index1
+      //make index as normal
+      int index2,index3;
+      for(int j=0;j<=realIndex-1;j++)
+      {
+    	  index2=Arrays.asList(B).indexOf(B[j]);
+    	  //for finding first occurance, need to make a separte array
+    	  int firstIndex=0;
+    	  int[] C=new int[N];
+    	  for(int k=j+1;k<=realIndex;k++){
+    		  C[firstIndex]=B[k];
+    		  firstIndex++;
+    		  }
+    	  index3=Arrays.asList(C).indexOf((M-B[j]));
+    	  if(index3!=-1){
+    		  System.out.println((index2+1)+" "+(index3+1+j));
+    	  break;
+    	  }
+    	  
+    	  
+      }
+      
+     
+		
+		
+	}
+
+	}}
